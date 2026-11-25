@@ -1,0 +1,30 @@
+# Frontend Dockerfile context only. It copies package files, index.html,
+# TypeScript config, src/, and nginx.conf; backend files are not needed.
+.git
+.gitignore
+.env
+.env.*
+*.env
+*.env.*
+*.pem
+*.key
+node_modules
+**/node_modules
+dist
+**/dist
+coverage
+coverage.*
+htmlcov
+*.log
+**/.pytest_cache
+**/__pycache__
+**/*.py[cod]
+**/.venv
+**/venv
+**/.mypy_cache
+**/.ruff_cache
+backend
+scripts
+README.md
+DOCKER_RUN.md
+render.yaml
