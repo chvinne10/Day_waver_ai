@@ -1,9 +1,3 @@
-databases:
-  - name: dayweave-db
-    plan: free
-    databaseName: dayweave
-    user: dayweave
-
 services:
   - type: web
     name: dayweave-api
@@ -11,28 +5,16 @@ services:
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
     healthCheckPath: /api/v1/health
-    disk:
-      name: dayweave-files
-      mountPath: /var/data/dayweave-files
-      sizeGB: 1
     envVars:
       - key: ENVIRONMENT
         value: production
       - key: DATABASE_URL
-        fromDatabase:
-          name: dayweave-db
-          property: connectionString
+        sync: false
       - key: CORS_ALLOWED_ORIGINS
-        value: https://dayweave.onrender.com
+        sync: false
       - key: SESSION_SECONDS
         value: "604800"
       - key: AI_CREDENTIAL_ENCRYPTION_KEY
         sync: false
       - key: FILE_STORAGE_ROOT
-        value: /var/data/dayweave-files
-  - type: web
-    name: dayweave
-    runtime: docker
-    dockerfilePath: ./Dockerfile
-    dockerContext: .
-    healthCheckPath: /health
+        value: /app/data/files
